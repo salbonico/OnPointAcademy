@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Onpoint Courses</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <h1>Onpoint Courses</h1>
+    <button id="allCourses"<%='hidden' if session["user_id"] == nil %> >All Courses</button>
+    <button <%='hidden' if session["user_id"] == nil %> onclick='window.location.href="/logout";'>Logout</button>
+    <hr>
+    <%= yield %>
+  </body>
+</html>
