@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import { connect } from 'react-redux'
-import { fetchCourses } from './fetchCourses'
+import oplogo from './oplogo.png';
+import { connect } from 'react-redux';
+import { fetchCourses } from './fetchCourses';
 import './App.css';
-import CoursesIndex from './CoursesIndex'
-
+import CoursesIndex from './CoursesIndex';
+import Button from '@material-ui/core/Button';
+import ButtonAppBar from './AppBar';
 class App extends Component {
 
   componentDidMount() {
@@ -14,9 +16,17 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+        <ButtonAppBar />
+        <div className="space"></div>
+        <Button variant="contained" color="primary">
+        Hello World
+      </Button>
+
         <CoursesIndex courses={this.props.courses}/>
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
+          <img src={oplogo} alt='oplogo' />
           <p>
             Edit <code>src/App.js</code> and save to reload.
           </p>

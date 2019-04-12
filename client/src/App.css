@@ -8,6 +8,10 @@
   pointer-events: none;
 }
 
+.space {
+  margin-top: 70px;
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -21,6 +25,12 @@
 
 .App-link {
   color: #61dafb;
+}
+
+.oplogo{
+padding-top: 15px;
+padding-bottom: 10px;
+
 }
 
 @keyframes App-logo-spin {

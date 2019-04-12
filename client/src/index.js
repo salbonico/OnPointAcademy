@@ -6,7 +6,7 @@ import thunk from 'redux-thunk';
 import courses_reducer from './courses_reducer';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
-
+import 'typeface-roboto';
 
 const store = createStore(courses_reducer, applyMiddleware(thunk));
 
