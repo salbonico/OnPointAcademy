@@ -10,8 +10,8 @@ renderCourses = () => this.props.courses.map((course) => <div><Course course={co
   render() {
     return(
       <div>
+        
         {this.renderCourses()}
-      
 
       </div>
     );
