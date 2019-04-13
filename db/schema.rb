@@ -10,18 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_11_072919) do
+ActiveRecord::Schema.define(version: 2019_04_13_162123) do
 
   create_table "courses", force: :cascade do |t|
     t.string "name"
     t.integer "teacher_id"
     t.string "description"
+    t.string "content"
   end
 
   create_table "enrollments", force: :cascade do |t|
     t.integer "course_id"
     t.integer "user_id"
     t.string "course_type"
+    t.boolean "completed", default: false
   end
 
   create_table "teachers", force: :cascade do |t|

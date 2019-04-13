@@ -19,6 +19,8 @@ import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import oplogo from './oplogo.png';
+import Button from '@material-ui/core/Button';
+import './App.css';
 
 const drawerWidth = 240;
 
@@ -27,7 +29,7 @@ const styles = theme => ({
     display: 'flex',
   },
   appBar: {
-    background: 'black',
+    background: 'white',
     zIndex: theme.zIndex.drawer + 1,
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
@@ -43,6 +45,7 @@ const styles = theme => ({
     }),
   },
   menuButton: {
+    color: "black",
     marginLeft: 5,
     marginRight: 36,
   },
@@ -122,10 +125,13 @@ class MiniDrawer extends React.Component {
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6" color="inherit" noWrap>
+            <Typography variant="h6" color="black" noWrap>
 
             </Typography>
               <img className="oplogo" src={oplogo} alt='oplogo' />
+              <Button variant="contained" style={{background: '#D23D2F',color:'#FAFAFA', marginLeft: '70%',}}>
+              Hello World
+            </Button>
           </Toolbar>
         </AppBar>
         <Drawer

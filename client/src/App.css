@@ -9,7 +9,7 @@
 }
 
 .space {
-  margin-top: 70px;
+  margin-top: 130px;
 }
 
 .App-header {
@@ -27,11 +27,19 @@
   color: #61dafb;
 }
 
+.paper{
+  width: 90%;
+  margin:auto;
+  padding: 8px;
+  max-width: 500px;
+
+}
+
 .oplogo{
 padding-top: 15px;
 padding-bottom: 10px;
-
 }
+
 
 @keyframes App-logo-spin {
   from {
