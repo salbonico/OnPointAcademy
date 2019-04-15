@@ -6,6 +6,9 @@ import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import { connect } from 'react-redux';
+import { fetchUser } from './fetchUser';
+import { withRouter, Link } from 'react-router-dom'
 
 const styles = theme => ({
   container: {
@@ -49,9 +52,7 @@ const styles = theme => ({
 class Loginbox extends React.Component {
   state = {
     name: '',
-    age: '',
-    multiline: 'Controlled',
-    currency: 'EUR',
+    password: '',
   };
 
   handleChange = name => event => {
@@ -59,6 +60,8 @@ class Loginbox extends React.Component {
       [name]: event.target.value,
     });
   };
+
+routeHome = () => this.props.history.push('/home')
 
   render() {
     const { classes } = this.props;
@@ -80,17 +83,19 @@ class Loginbox extends React.Component {
         />
 
         <TextField
-          id="outlined-uncontrolled"
+          id="outlined-password"
           label="Password"
           type="password"
+          value={this.state.password}
           className={classes.textField}
+          onChange={this.handleChange('password')}
           margin="normal"
           variant="outlined"
         />
-        <Button variant="contained"  className={classes.button}>
+        <Button onClick={() => this.props.dispatchUser(this.state,this.routeHome)} variant="contained"  className={classes.button}>
         Login
       </Button>
-      <Button variant="contained"  className={classes.button2}>
+      <Button onClick={this.routeHome} variant="contained"  className={classes.button2}>
         Signup
       </Button>
 
@@ -104,4 +109,12 @@ Loginbox.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Loginbox);
+const mapDispatchToProps = dispatch => {
+  return {
+    dispatchUser: (input, route) => {
+      dispatch(fetchUser(input, route))
+    }
+  };
+};
+
+export default withRouter(connect(null, mapDispatchToProps)(withStyles(styles)(Loginbox)));

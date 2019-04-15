@@ -18,9 +18,8 @@ class Course extends React.Component {
 render(){
   return (
     <div className="list">
-    {console.log(this.props)}
       <Paper props={this.props} className="paper" elevation={2}>
-      {console.log(this.props)}
+    
         <Typography props={this.props} variant="h5" component="h3">
         {this.props.course.name}
         </Typography>

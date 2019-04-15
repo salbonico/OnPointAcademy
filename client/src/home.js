@@ -18,10 +18,10 @@ class Home extends Component {
     return (
       <div className="App">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-
+        {console.log(this.props.user)}
         <ButtonAppBar />
         <div className="space"></div>
-        <p>This is home.js</p>
+        <p>Hello,{this.props.user.name}!</p>
 
 
         <CoursesIndex className="list" courses={this.props.courses}/>
@@ -47,7 +47,8 @@ class Home extends Component {
 
 const mapStateToProps = state => {
   return {
-    courses: state.courses
+    courses: state.courses.courses,
+    user: state.user.user
   }
 }
 
