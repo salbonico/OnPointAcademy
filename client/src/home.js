@@ -18,8 +18,7 @@ class Home extends Component {
     return (
       <div className="App">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-        {console.log(this.props.user)}
-        <ButtonAppBar />
+        <ButtonAppBar courses={this.props.courses}/>
         <div className="space"></div>
         <p>Hello,{this.props.user.name}!</p>
 

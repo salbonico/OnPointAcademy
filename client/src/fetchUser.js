@@ -12,7 +12,7 @@ export function fetchUser(input, route) {
   }
 
 return (dispatch) => {
-    fetch(`/login2.json`, data)
+    fetch(`/login.json`, data)
       .then(response => response.json())
       .then(response2 => {
         if (response2 != null)
@@ -21,12 +21,13 @@ return (dispatch) => {
               type: 'SET_USER',
               payload: response2
           })
+          {route()}
         }
         else
         {
           {alert("Incorrect Username or Password")}
         }
           })
-      .then(route)
+      .catch(err => alert("Incorrect Username or Password"))
 }
 }

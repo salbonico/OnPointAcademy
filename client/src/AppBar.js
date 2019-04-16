@@ -70,9 +70,9 @@ const styles = theme => ({
       duration: theme.transitions.duration.leavingScreen,
     }),
     overflowX: 'hidden',
-    width: theme.spacing.unit * 7 + 1,
+    width: 0,
     [theme.breakpoints.up('sm')]: {
-      width: theme.spacing.unit * 7 + 1,
+      width: 0,
     },
   },
   toolbar: {
@@ -94,7 +94,9 @@ class MiniDrawer extends React.Component {
   };
 
   handleDrawerOpen = () => {
-    this.setState({ open: true });
+    if (this.state.open === false )
+    {this.setState({ open: true });}
+    else {this.handleDrawerClose()}
   };
 
   handleDrawerClose = () => {
@@ -115,22 +117,13 @@ class MiniDrawer extends React.Component {
           })}
         >
           <Toolbar disableGutters={!this.state.open}>
-            <IconButton
-              color="inherit"
-              aria-label="Open drawer"
-              onClick={this.handleDrawerOpen}
-              className={classNames(classes.menuButton, {
-                [classes.hide]: this.state.open,
-              })}
-            >
-              <MenuIcon />
-            </IconButton>
+            
             <Typography variant="h6" color="black" noWrap>
 
             </Typography>
               <img className="oplogo" src={oplogo} alt='oplogo' />
-              <Button variant="contained" style={{background: '#D23D2F',color:'#FAFAFA', marginLeft: '70%',}}>
-              Hello World
+              <Button onClick={this.handleDrawerOpen} variant="contained" style={{background: '#D23D2F',color:'#FAFAFA', marginLeft: '1%',}}>
+              Courses
             </Button>
           </Toolbar>
         </AppBar>
@@ -149,28 +142,20 @@ class MiniDrawer extends React.Component {
           open={this.state.open}
         >
           <div className={classes.toolbar}>
-            <IconButton onClick={this.handleDrawerClose}>
-              {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-            </IconButton>
+          <Typography variant="h2" color="black" style={{marginRight: '5px', paddingBottom: '18px', paddingTop:'17px'}}> >
+          Courses
+          </Typography>
           </div>
           <Divider />
           <List>
-            {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                <ListItemText primary={text} />
+            {this.props.courses.map((course) => (
+              <ListItem button key={course.name}>
+
+                <ListItemText primary={course.name} />
               </ListItem>
             ))}
           </List>
-          <Divider />
-          <List>
-            {['All mail', 'Trash', 'Spam'].map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
-            ))}
-          </List>
+
         </Drawer>
       </div>
     );
