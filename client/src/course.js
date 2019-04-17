@@ -16,10 +16,15 @@ class Course extends React.Component {
   renderPics = () => this.props.course.map((course) => <p> src={course.name} </p>)
 
 render(){
+  if (!this.props.course){
+  return (
+    <div><h1>Loading...</h1></div>
+  )}
   return (
     <div className="list">
+
       <Paper props={this.props} className="paper" elevation={2}>
-    
+      {console.log(this.props)}
         <Typography props={this.props} variant="h5" component="h3">
         {this.props.course.name}
         </Typography>

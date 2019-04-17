@@ -1,4 +1,4 @@
-export function checkSession(route) {
+export function checkLoginSession(route) {
 
   return (dispatch) => {
     fetch('/session.json')
@@ -9,7 +9,7 @@ export function checkSession(route) {
           type: 'SET_USER',
           payload: session
       })
-      }})
-    .catch(err => route())
+      route()}})
+    .catch(err => console.log("No Session"))
   }
 }

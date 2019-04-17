@@ -3,45 +3,39 @@ import logo from './logo.svg';
 import oplogo from './oplogo.png';
 import { connect } from 'react-redux';
 import { fetchCourses } from './fetchCourses';
+import { checkSession } from './checkSession';
 import './App.css';
 import CoursesIndex from './CoursesIndex';
 import Button from '@material-ui/core/Button';
 import AppBar from './AppBar';
 import { withRouter, Link } from 'react-router-dom'
 import { logout } from './logout'
+import { coursePage } from './coursePage'
+import Course from './course'
 
 class Home extends Component {
 routeLogin = () => this.props.history.push('/login')
 
   componentDidMount() {
     this.props.fetchCourses2()
+    this.props.checkSession2(this.routeLogin)
       }
 
   render() {
+    if (!this.props.courses){
+    return (
+      <div><h1>Loading...</h1></div>
+    )}
+
     return (
       <div className="App">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-        {(this.props.user.name === undefined) ? this.routeLogin():console.log("User logged in")}
+
         <AppBar courses={this.props.courses} logout={this.props.logout2} routeLogin={this.routeLogin}/>
         <div className="space"></div>
         <p>Hello,{this.props.user.name}!</p>
-
-        <CoursesIndex className="list" courses={this.props.courses}/>
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <img src={oplogo} alt='oplogo' />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <Course course={this.props.courses.find(course => course.id === parseInt(this.props.match.params.id))}/>
+      
       </div>
     );
   }
@@ -61,6 +55,9 @@ const mapDispatchToProps = dispatch => {
     },
     logout2: (route) => {
       dispatch(logout(route))
+    },
+    checkSession2: (route) => {
+      dispatch(checkSession(route))
     }
   };
 };

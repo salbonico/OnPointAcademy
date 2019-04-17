@@ -150,7 +150,7 @@ logout = () => {
           <Divider />
           <List>
             {this.props.courses.map((course) => (
-              <ListItem button key={course.name}>
+              <ListItem button onClick={() => alert(course.id)} key={course.id}>
 
                 <ListItemText primary={course.name} />
               </ListItem>

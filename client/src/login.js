@@ -5,7 +5,7 @@ import './login.css';
 import Button from '@material-ui/core/Button';
 import Loginbox from './Loginbox'
 import Typography from '@material-ui/core/Typography';
-import { checkSession } from './checkSession'
+import { checkLoginSession } from './checkLoginSession'
 import { withRouter, Link } from 'react-router-dom'
 
 class Login extends Component {
@@ -33,7 +33,7 @@ routeHome = () => this.props.history.push('/home')
 const mapDispatchToProps = dispatch => {
   return {
     session2: (route) => {
-      dispatch(checkSession(route))
+      dispatch(checkLoginSession(route))
     }
   };
 };
