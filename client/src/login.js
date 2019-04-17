@@ -5,8 +5,15 @@ import './login.css';
 import Button from '@material-ui/core/Button';
 import Loginbox from './Loginbox'
 import Typography from '@material-ui/core/Typography';
+import { checkSession } from './checkSession'
+import { withRouter, Link } from 'react-router-dom'
 
 class Login extends Component {
+routeHome = () => this.props.history.push('/home')
+
+  componentDidMount() {
+    this.props.session2(this.routeHome)
+      }
 
   render() {
     return(
@@ -23,5 +30,12 @@ class Login extends Component {
   )}
 };
 
+const mapDispatchToProps = dispatch => {
+  return {
+    session2: (route) => {
+      dispatch(checkSession(route))
+    }
+  };
+};
 
-export default Login
+export default withRouter(connect(null, mapDispatchToProps)(Login))

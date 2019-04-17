@@ -10,6 +10,13 @@ export default function users_reducer(state = {user: []}, action) {
                   }
         return output
 
+      case 'CLEAR_USER':
+
+      const output2= {
+        user: []
+      }
+      return output2
+
       default:
         return state;
     }
