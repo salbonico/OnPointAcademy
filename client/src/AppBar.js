@@ -15,8 +15,10 @@ import ListItemText from '@material-ui/core/ListItemText';
 import oplogo from './oplogo.png';
 import Button from '@material-ui/core/Button';
 import './App.css';
+import DoneIcon from '@material-ui/icons/Done';
+import { withRouter } from 'react-router-dom'
 
-const drawerWidth = 240;
+const drawerWidth = 260;
 
 const styles = theme => ({
   root: {
@@ -116,16 +118,19 @@ logout = () => {
         >
           <Toolbar disableGutters={!this.state.open}>
 
-            <Typography variant="h6" color="black" noWrap>
+            <Typography variant="h6" noWrap>
 
             </Typography>
               <img className="oplogo" src={oplogo} alt='oplogo' />
               <Button onClick={this.handleDrawerOpen} variant="contained" style={{background: '#D23D2F',color:'#FAFAFA', marginLeft: '1%',}}>
-              Courses
+               Courses
             </Button>
             <Button onClick={() => this.props.logout(this.props.routeLogin)} variant="contained" style={{background: '#D23D2F',color:'#FAFAFA', marginLeft: '1%',}}>
             Logout
           </Button>
+          <Button onClick={() => this.props.history.push(`/home`)} variant="contained" style={{background: '#D23D2F',color:'#FAFAFA', marginLeft: '1%',}}>
+           Home
+        </Button>
           </Toolbar>
         </AppBar>
         <Drawer
@@ -143,16 +148,20 @@ logout = () => {
           open={this.state.open}
         >
           <div className={classes.toolbar}>
-          <Typography variant="h2" color="black" style={{marginRight: '5px', paddingBottom: '18px', paddingTop:'17px'}}> >
+          <Typography variant="h2" style={{marginRight: '5px', paddingBottom: '18px', paddingTop:'17px'}}>
           Courses
           </Typography>
           </div>
           <Divider />
           <List>
             {this.props.courses.map((course) => (
-              <ListItem button onClick={() => alert(course.id)} key={course.id}>
-
-                <ListItemText primary={course.name} />
+              <ListItem button onClick={() => this.props.history.push(`/courses/${course.id}`)} key={course.id}>
+              {course.id < 5 &&
+              <ListItemIcon>
+              <DoneIcon />
+              </ListItemIcon>
+              }
+              <ListItemText primary={course.name} />
               </ListItem>
             ))}
           </List>
@@ -168,4 +177,4 @@ MiniDrawer.propTypes = {
   theme: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles, { withTheme: true })(MiniDrawer);
+export default withRouter(withStyles(styles, { withTheme: true })(MiniDrawer));

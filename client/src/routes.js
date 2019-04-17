@@ -1,10 +1,8 @@
 import React from 'react'
-import { coursePage } from './coursePage'
-import { BrowserRouter, Switch, Route, Redirect, Link } from 'react-router-dom'
-import loginbg from './loginbg.jpg';
+import { BrowserRouter, Switch, Route} from 'react-router-dom'
 import Home from './home'
 import Login from './login'
-const imgMyimageexample = require('./loginbg.jpg');
+
 
 
 export default (

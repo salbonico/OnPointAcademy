@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+
 import { withStyles } from '@material-ui/core/styles';
-import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
@@ -68,7 +67,7 @@ routeHome = () => this.props.history.push('/home')
 
     return (
       <div>
-      <Typography className={classes.welcome} variant="h2" color="black" noWrap>
+      <Typography className={classes.welcome} variant="h2"  noWrap>
       Welcome
       </Typography>
       <form className={classes.container} noValidate autoComplete="off">

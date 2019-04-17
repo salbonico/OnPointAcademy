@@ -1,5 +1,3 @@
-import { withRouter, Link } from 'react-router-dom'
-
 export function fetchUser(input, route) {
 
   let data = {
@@ -21,11 +19,11 @@ return (dispatch) => {
               type: 'SET_USER',
               payload: response2
           })
-          {route()}
+          route()
         }
         else
         {
-          {alert("Incorrect Username or Password")}
+          alert("Incorrect Username or Password")
         }
           })
       .catch(err => alert("Incorrect Username or Password"))

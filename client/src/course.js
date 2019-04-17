@@ -25,7 +25,7 @@ render(){
 
       <Paper props={this.props} className="paper" elevation={2}>
       {console.log(this.props)}
-        <Typography props={this.props} variant="h5" component="h3">
+        <Typography props={this.props} variant="h1" component="h3">
         {this.props.course.name}
         </Typography>
         <Typography component="p">
