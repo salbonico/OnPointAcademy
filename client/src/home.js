@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { fetchCourses } from './fetchCourses';
 import { checkSession } from './checkSession';
 import './App.css';
-
+import Dashboard from './dashboard'
 import AppBar from './AppBar';
 import { withRouter } from 'react-router-dom'
 import { logout } from './logout'
@@ -25,8 +25,8 @@ routeLogin = () => this.props.history.push('/login')
 
         <AppBar courses={this.props.courses} logout={this.props.logout2} routeLogin={this.routeLogin}/>
         <div className="space"></div>
-        <div><p>Hello,{this.props.user.name}!</p></div>
-        {console.log(this.props)}
+      <Dashboard stateinfo={this.props} />
+
 
       </div>
     )}

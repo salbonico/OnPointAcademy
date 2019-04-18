@@ -67,7 +67,7 @@ routeHome = () => this.props.history.push('/home')
 
     return (
       <div>
-      <Typography className={classes.welcome} variant="h2"  noWrap>
+      <Typography className={classes.welcome} variant="h2" noWrap>
       Welcome
       </Typography>
       <form className={classes.container} noValidate autoComplete="off">
