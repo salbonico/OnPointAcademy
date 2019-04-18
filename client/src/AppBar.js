@@ -147,7 +147,7 @@ logout = () => {
             }),
           }}
           open={this.state.open}
-        >{console.log(this.props)}
+        >
           <div className={classes.toolbar}>
           <Typography variant="h2" style={{marginRight: '5px', paddingBottom: '18px', paddingTop:'17px'}}>
           Courses

@@ -18,7 +18,7 @@ routeLogin = () => this.props.history.push('/login')
       }
 
   render() {
-    console.log(this.props.user.id)
+
     if (!this.props.match.params.id){
     return (
 
@@ -37,7 +37,7 @@ routeLogin = () => this.props.history.push('/login')
       <div className="App">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 
-        <AppBar courses={this.props.courses} logout={this.props.logout2} routeLogin={this.routeLogin}/>
+        <AppBar user={this.props.user.id} courses={this.props.courses} logout={this.props.logout2} routeLogin={this.routeLogin}/>
         <div className="space"></div>
 
         <Course course={this.props.courses.find(course => course.id === parseInt(this.props.match.params.id))}/>
