@@ -2,6 +2,7 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
+import Loading from './loading'
 import './App.css';
 
 const styles = theme => ({
@@ -18,7 +19,7 @@ class Course extends React.Component {
 render(){
   if (!this.props.course){
   return (
-    <div><h1>Loading...</h1></div>
+    <div><Loading /></div>
   )}
   return (
     <div className="list">
