@@ -19,8 +19,6 @@ const styles = theme => ({
 class Dashboard extends React.Component {
 
 render(){
-  console.log(this.props)
-
   if (!this.props.stateinfo.user.completes){
   return (
     <div><Loading /></div>

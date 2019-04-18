@@ -37,7 +37,6 @@ export default class Gauge extends Component {
 
         return (
             <div>
-            {console.log(this.props.value)}
                 <LiquidFillGauge
                     style={{ margin: '0 auto' }}
                     width={radius * 2}

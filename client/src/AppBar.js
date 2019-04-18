@@ -135,6 +135,7 @@ logout = () => {
         </AppBar>
         <Drawer
           variant="permanent"
+
           className={classNames(classes.drawer, {
             [classes.drawerOpen]: this.state.open,
             [classes.drawerClose]: !this.state.open,
@@ -146,7 +147,7 @@ logout = () => {
             }),
           }}
           open={this.state.open}
-        >
+        >{console.log(this.props)}
           <div className={classes.toolbar}>
           <Typography variant="h2" style={{marginRight: '5px', paddingBottom: '18px', paddingTop:'17px'}}>
           Courses
@@ -156,7 +157,7 @@ logout = () => {
           <List>
             {this.props.courses.map((course) => (
               <ListItem button onClick={() => this.props.history.push(`/courses/${course.id}`)} key={course.id}>
-              {course.id < 5 &&
+              {course.completes.find((complete) => complete.user_id === this.props.user) &&
               <ListItemIcon>
               <DoneIcon />
               </ListItemIcon>

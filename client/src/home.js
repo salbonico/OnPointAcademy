@@ -18,12 +18,14 @@ routeLogin = () => this.props.history.push('/login')
       }
 
   render() {
+    console.log(this.props.user.id)
     if (!this.props.match.params.id){
     return (
+
       <div className="App">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 
-        <AppBar courses={this.props.courses} logout={this.props.logout2} routeLogin={this.routeLogin}/>
+        <AppBar user={this.props.user.id} courses={this.props.courses} logout={this.props.logout2} routeLogin={this.routeLogin}/>
         <div className="space"></div>
       <Dashboard stateinfo={this.props} />
 
