@@ -7,6 +7,7 @@ import Gauge from './gauge'
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import './App.css';
+import { withRouter } from 'react-router-dom'
 
 const styles = theme => ({
   root: {
@@ -16,7 +17,10 @@ const styles = theme => ({
   },
 });
 
+
 class Dashboard extends React.Component {
+
+
 
 render(){
   if (!this.props.stateinfo.user.completes){
@@ -29,6 +33,8 @@ render(){
   return (
     <div className="list" >
 
+    {console.log(this.props)}
+
       <Paper props={this.props} className="paper" elevation={2}>
         <Typography props={this.props} variant="h1" component="h3">
         Welcome {this.props.stateinfo.user.firstname}
@@ -39,10 +45,10 @@ render(){
 <Typography variant="h2">
 Current Lesson:
 </Typography>
- <Paper props={this.props} onClick={() => alert("click!")} className="paper" elevation={5} style={{marginTop: '5px', marginBottom: '15px', paddingTop: '10px', width:'85%', backgroundColor:'#8AF0E8', opacity:'0.8'}}>
+ <Paper props={this.props} onClick={() => this.props.history.push(`/courses/${this.props.nextCourse.id}`)} className="paper" elevation={5} style={{marginTop: '5px', marginBottom: '15px', paddingTop: '10px', width:'85%', backgroundColor:'#8AF0E8', opacity:'0.8'}}>
 
   <Typography variant="h3">
-  Pokemon
+  {this.props.nextCourse && this.props.nextCourse.name}
   </Typography>
   </Paper>
 </Paper>
@@ -59,4 +65,4 @@ Current Lesson:
 }
 }
 
-export default withStyles(styles)(Dashboard);
+export default withRouter(withStyles(styles)(Dashboard));
