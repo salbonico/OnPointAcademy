@@ -6,6 +6,8 @@ import Loading from './loading'
 import './App.css';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
+import Button from '@material-ui/core/Button'
+import DoneIcon from '@material-ui/icons/Done';
 
 const styles = theme => ({
   root: {
@@ -19,21 +21,17 @@ const styles = theme => ({
 
 
 class Course extends React.Component {
-
-
-
-  state = {
-    completed: false,
-  };
-
-  componentDidMount() {
-    
-
-      }
-
-  handleChange = name => event => {
+  handleChange = () => {
+    this.props.createComplete2({course_id:this.props.courseid},this.props.route)
     this.setState({ completed: !this.state.completed });
   };
+
+  state = {
+    completed: this.props.buttoncheck,
+  };
+
+
+
 
 render(){
   if (!this.props.course){
@@ -58,11 +56,18 @@ render(){
       </Paper>
 <Paper style={{marginTop: '15px', padding: '25px', maxWidth:'90%', minWidth:'300px'}}
 props={this.props} className="paper" elevation={2}>
+
 <Typography component="p">
 {this.props.course.content}
 </Typography>
 </Paper>
+{!this.state.completed &&
+<Button variant="contained" onClick={() => this.handleChange()} style={{background: '#D23D2F',color:'#FAFAFA',marginTop:'10px'}}><Typography variant="h4" style={{fontWeight:'300', color:'white'}} noWrap>Mark Completed</Typography></Button>
+}
 
+{this.state.completed &&
+<Button variant="contained" onClick={() => this.handleChange()}style={{background: 'green',marginTop: '10px', color:'white'}}><DoneIcon style={{marginRight:'5px'}}/><Typography style={{fontWeight:'300', color:'white'}} variant="h4" noWrap> Completed</Typography></Button>
+}
     </div>
   );
 }

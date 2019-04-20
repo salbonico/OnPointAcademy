@@ -12,8 +12,7 @@ export function createComplete(input, route) {
 return (dispatch) => {
     fetch(`/completes/new.json`, data)
       .then(response => response.json())
-      .then(
-        route('home'))
+      .then(route())
       .catch(err => console.log(err))
 }
 }

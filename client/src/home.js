@@ -13,20 +13,18 @@ import DoneIcon from '@material-ui/icons/Done';
 import Typography from '@material-ui/core/Typography';
 import { createComplete } from './createComplete'
 import { nextCourse } from './nextCourse'
-
+import Loading from './loading'
 
 class Home extends Component {
 routeLogin = () => this.props.history.push('/login');
 testfunction = (course) => this.props.user.completes.find(function (complete) { return complete.course_id === course})?true:false
 newfunction = (course) => this.props.courses.find(function(element) {return element.id === course})
 courseId = (course) => course.id
-routeBack = () => this.props.history.push(`/home`)
+routeBack = () => this.props.history.push(`/courses/${this.props.match.params.id}`)
 gaugefill = (completes,courses) => courses !== undefined && completes !== undefined ?Math.trunc((completes.length/courses.length)*100):1001
 
 
-state = {
-  lastGauge: 0
-}
+
 
   componentDidMount() {
     this.props.fetchCourses2()
@@ -34,6 +32,10 @@ state = {
       }
 
   render() {
+    if (!this.props.user.completes){
+    return (
+      <div><Loading /></div>
+    )}
 
     if (!this.props.match.params.id){
     return (
@@ -46,10 +48,6 @@ state = {
       </div>
     )}
 
-    if (!this.props.user.completes){
-    return (
-      <div>Loading...</div>
-    )}
 
     return (
       <div className="App">
@@ -59,15 +57,9 @@ state = {
         <AppBar user={this.props.user.id} courses={this.props.courses} logout={this.props.logout2} routeLogin={this.routeLogin}/>
         <div className="space"></div>
 
-        <Course status={true} user={this.props.user} completes={this.props.user.completes} course={this.props.courses.find(course => course.id === parseInt(this.props.match.params.id))}/>
+        <Course route={this.routeBack} courseid={this.props.match.params.id} buttoncheck={this.testfunction(parseInt(this.props.match.params.id))} createComplete2={this.props.createComplete2} status={true} user={this.props.user} completes={this.props.user.completes} course={this.props.courses.find(course => course.id === parseInt(this.props.match.params.id))}/>
 
-        {this.props.user.completes && !this.testfunction(parseInt(this.props.match.params.id)) &&
-        <Button variant="contained" onClick={() => this.props.createComplete2({course_id:this.props.match.params.id},this.routeBack)} style={{background: '#D23D2F',color:'#FAFAFA',marginTop:'10px'}}><Typography variant="h4" style={{fontWeight:'300', color:'white'}} noWrap>Mark Completed</Typography></Button>
-        }
 
-        {this.props.user.completes && this.testfunction(parseInt(this.props.match.params.id)) &&
-        <Button variant="contained" style={{background: 'green',marginTop: '10px', color:'white'}}><DoneIcon style={{marginRight:'5px'}}/><Typography style={{fontWeight:'300', color:'white'}} variant="h4" noWrap> Completed</Typography></Button>
-        }
         {this.props.user && console.log(nextCourse(this.props.user,this.props.courses))}
       </div>
     );
