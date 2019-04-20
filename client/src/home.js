@@ -14,12 +14,19 @@ import Typography from '@material-ui/core/Typography';
 import { createComplete } from './createComplete'
 import { nextCourse } from './nextCourse'
 
+
 class Home extends Component {
 routeLogin = () => this.props.history.push('/login');
 testfunction = (course) => this.props.user.completes.find(function (complete) { return complete.course_id === course})?true:false
 newfunction = (course) => this.props.courses.find(function(element) {return element.id === course})
 courseId = (course) => course.id
 routeBack = () => this.props.history.push(`/home`)
+gaugefill = (completes,courses) => courses !== undefined && completes !== undefined ?Math.trunc((completes.length/courses.length)*100):1001
+
+
+state = {
+  lastGauge: 0
+}
 
   componentDidMount() {
     this.props.fetchCourses2()
@@ -30,12 +37,11 @@ routeBack = () => this.props.history.push(`/home`)
 
     if (!this.props.match.params.id){
     return (
-
       <div className="App">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
         <AppBar user={this.props.user.id} courses={this.props.courses} logout={this.props.logout2} routeLogin={this.routeLogin}/>
         <div className="space"></div>
-      <Dashboard stateinfo={this.props} nextCourse= {nextCourse(this.props.user,this.props.courses)}/>
+      <Dashboard stateinfo={this.props} gaugefill={this.gaugefill(this.props.user.completes,this.props.courses)} nextCourse= {nextCourse(this.props.user,this.props.courses)}/>
 
       </div>
     )}

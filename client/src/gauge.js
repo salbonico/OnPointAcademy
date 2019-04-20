@@ -5,7 +5,7 @@ import LiquidFillGauge from 'react-liquid-gauge';
 
 export default class Gauge extends Component {
     state = {
-        value: this.props.value > 1000 ? 0 : this.props.value
+        value: this.props.value
     };
     startColor = '#D23D2F';
     endColor = '#D23D2F';
@@ -41,7 +41,7 @@ export default class Gauge extends Component {
                     style={{ margin: '0 auto' }}
                     width={radius * 2}
                     height={radius * 2}
-                    value={this.state.value}
+                    value={this.props.value}
                     percent="%"
                     textSize={1}
                     textOffsetX={0}

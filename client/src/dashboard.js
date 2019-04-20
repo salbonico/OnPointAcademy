@@ -18,18 +18,21 @@ const styles = theme => ({
 });
 
 
+
 class Dashboard extends React.Component {
 
 
 
+
+
 render(){
-  if (!this.props.stateinfo.user.completes){
+  if (!this.props.stateinfo.courses){
   return (
     <div><Loading /></div>
   )}
 
 
-  const value = Math.trunc((this.props.stateinfo.user.completes.length/this.props.stateinfo.courses.length)*100)
+
   return (
     <div className="list" >
 
@@ -52,13 +55,15 @@ Current Lesson:
   </Typography>
   </Paper>
 </Paper>
+      {this.props.stateinfo.courses &&
       <Paper props={this.props} className="paper" elevation={2} style={{marginTop: '15px', paddingTop: '10px', width:'33%', minWidth:'300px'}}>
-      {value < 1000 && <Gauge value={value}/>}
+      {this.props.gaugefill < 1000 &&
+      <Gauge value={this.props.gaugefill}/>}
         <Typography variant="h5">
         {this.props.stateinfo.user.completes.length}/{this.props.stateinfo.courses.length} <br></br>
         Courses completed
         </Typography>
-      </Paper>
+      </Paper>}
       </div>
     </div>
   );
