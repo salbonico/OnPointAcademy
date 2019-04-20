@@ -1,7 +1,7 @@
-export function createComplete(input) {
+export function destroyComplete(input, route) {
 
   let data = {
-    method: 'POST',
+    method: 'DELETE',
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
@@ -10,7 +10,7 @@ export function createComplete(input) {
   }
 
 return (dispatch) => {
-    fetch(`/completes/new.json`, data)
+    fetch(`/completes/destroy.json`, data)
       .then(response => response.json())
       .catch(err => console.log(err))
 }

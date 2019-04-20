@@ -21,8 +21,14 @@ const styles = theme => ({
 
 
 class Course extends React.Component {
-  handleChange = () => {
-    this.props.createComplete2({course_id:this.props.courseid},this.props.route)
+  handleComplete = () => {
+    this.props.createComplete2({course_id:this.props.courseid})
+    this.setState({ completed: !this.state.completed });
+  };
+
+  handleUncomplete = (courseid) => {
+    let id = this.props.user.completes.find(function (complete) { return complete.course_id === parseInt(courseid)})
+    this.props.destroyComplete2({course_id:id.id})
     this.setState({ completed: !this.state.completed });
   };
 
@@ -62,11 +68,11 @@ props={this.props} className="paper" elevation={2}>
 </Typography>
 </Paper>
 {!this.state.completed &&
-<Button variant="contained" onClick={() => this.handleChange()} style={{background: '#D23D2F',color:'#FAFAFA',marginTop:'10px'}}><Typography variant="h4" style={{fontWeight:'300', color:'white'}} noWrap>Mark Completed</Typography></Button>
+<Button variant="contained" onClick={() => this.handleComplete()} style={{background: '#D23D2F',color:'#FAFAFA',marginTop:'10px'}}><Typography variant="h4" style={{fontWeight:'300', color:'white'}} noWrap>Mark Completed</Typography></Button>
 }
 
 {this.state.completed &&
-<Button variant="contained" onClick={() => this.handleChange()}style={{background: 'green',marginTop: '10px', color:'white'}}><DoneIcon style={{marginRight:'5px'}}/><Typography style={{fontWeight:'300', color:'white'}} variant="h4" noWrap> Completed</Typography></Button>
+<Button variant="contained" onClick={() => this.handleUncomplete(this.props.courseid)} style={{background: 'green',marginTop: '10px', color:'white'}}><DoneIcon style={{marginRight:'5px'}}/><Typography style={{fontWeight:'300', color:'white'}} variant="h4" noWrap> Completed</Typography></Button>
 }
     </div>
   );

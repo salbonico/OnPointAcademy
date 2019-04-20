@@ -12,6 +12,7 @@ import Button from '@material-ui/core/Button'
 import DoneIcon from '@material-ui/icons/Done';
 import Typography from '@material-ui/core/Typography';
 import { createComplete } from './createComplete'
+import { destroyComplete } from './destroyComplete'
 import { nextCourse } from './nextCourse'
 import Loading from './loading'
 
@@ -57,7 +58,7 @@ gaugefill = (completes,courses) => courses !== undefined && completes !== undefi
         <AppBar user={this.props.user.id} courses={this.props.courses} logout={this.props.logout2} routeLogin={this.routeLogin}/>
         <div className="space"></div>
 
-        <Course route={this.routeBack} courseid={this.props.match.params.id} buttoncheck={this.testfunction(parseInt(this.props.match.params.id))} createComplete2={this.props.createComplete2} status={true} user={this.props.user} completes={this.props.user.completes} course={this.props.courses.find(course => course.id === parseInt(this.props.match.params.id))}/>
+        <Course route={this.routeBack} courseid={this.props.match.params.id} buttoncheck={this.testfunction(parseInt(this.props.match.params.id))} destroyComplete2={this.props.destroyComplete2} createComplete2={this.props.createComplete2} user={this.props.user} completes={this.props.user.completes} course={this.props.courses.find(course => course.id === parseInt(this.props.match.params.id))}/>
 
 
         {this.props.user && console.log(nextCourse(this.props.user,this.props.courses))}
@@ -84,8 +85,11 @@ const mapDispatchToProps = dispatch => {
     checkSession2: (route) => {
       dispatch(checkSession(route))
     },
-    createComplete2: (data,route) =>{
-      dispatch(createComplete(data,route))
+    createComplete2: (data) =>{
+      dispatch(createComplete(data))
+    },
+    destroyComplete2: (data) => {
+      dispatch(destroyComplete(data))
     }
   };
 };
