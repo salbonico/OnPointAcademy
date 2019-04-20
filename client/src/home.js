@@ -21,7 +21,7 @@ routeLogin = () => this.props.history.push('/login');
 testfunction = (course) => this.props.user.completes.find(function (complete) { return complete.course_id === course})?true:false
 newfunction = (course) => this.props.courses.find(function(element) {return element.id === course})
 courseId = (course) => course.id
-routeBack = () => this.props.history.push(`/courses/${this.props.match.params.id}`)
+routeBack = () => this.props.history.push('/home')
 gaugefill = (completes,courses) => courses !== undefined && completes !== undefined ?Math.trunc((completes.length/courses.length)*100):1001
 
 
@@ -58,10 +58,8 @@ gaugefill = (completes,courses) => courses !== undefined && completes !== undefi
         <AppBar user={this.props.user.id} courses={this.props.courses} logout={this.props.logout2} routeLogin={this.routeLogin}/>
         <div className="space"></div>
 
-        <Course route={this.routeBack} courseid={this.props.match.params.id} buttoncheck={this.testfunction(parseInt(this.props.match.params.id))} destroyComplete2={this.props.destroyComplete2} createComplete2={this.props.createComplete2} user={this.props.user} completes={this.props.user.completes} course={this.props.courses.find(course => course.id === parseInt(this.props.match.params.id))}/>
+        <Course nextCourse={nextCourse(this.props.user,this.props.courses)} route={this.routeBack} courseid={this.props.match.params.id} buttoncheck={this.testfunction(parseInt(this.props.match.params.id))} destroyComplete2={this.props.destroyComplete2} createComplete2={this.props.createComplete2} user={this.props.user} completes={this.props.user.completes} course={this.props.courses.find(course => course.id === parseInt(this.props.match.params.id))}/>
 
-
-        {this.props.user && console.log(nextCourse(this.props.user,this.props.courses))}
       </div>
     );
   }
@@ -85,11 +83,11 @@ const mapDispatchToProps = dispatch => {
     checkSession2: (route) => {
       dispatch(checkSession(route))
     },
-    createComplete2: (data) =>{
-      dispatch(createComplete(data))
+    createComplete2: (data, route) =>{
+      dispatch(createComplete(data,route))
     },
-    destroyComplete2: (data) => {
-      dispatch(destroyComplete(data))
+    destroyComplete2: (data, route) => {
+      dispatch(destroyComplete(data,route))
     }
   };
 };

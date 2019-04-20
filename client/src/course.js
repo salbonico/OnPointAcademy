@@ -6,8 +6,10 @@ import Loading from './loading'
 import './App.css';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
-import Button from '@material-ui/core/Button'
+import Button from '@material-ui/core/Button';
 import DoneIcon from '@material-ui/icons/Done';
+import { withRouter } from 'react-router-dom';
+
 
 const styles = theme => ({
   root: {
@@ -17,35 +19,29 @@ const styles = theme => ({
   },
 });
 
-
-
-
 class Course extends React.Component {
   handleComplete = () => {
-    this.props.createComplete2({course_id:this.props.courseid})
+    this.props.createComplete2({course_id:this.props.courseid},this.props.route)
     this.setState({ completed: !this.state.completed });
   };
 
   handleUncomplete = (courseid) => {
     let id = this.props.user.completes.find(function (complete) { return complete.course_id === parseInt(courseid)})
-    this.props.destroyComplete2({course_id:id.id})
+    this.props.destroyComplete2({course_id:id.id}, this.props.route)
     this.setState({ completed: !this.state.completed });
   };
 
+
+
   state = {
-    completed: this.props.buttoncheck,
+    completed: this.props.buttoncheck
   };
-
-
-
 
 render(){
   if (!this.props.course){
   return (
     <div><Loading /></div>
   )}
-
-
 
   return (
     <div className="list">
@@ -74,9 +70,11 @@ props={this.props} className="paper" elevation={2}>
 {this.state.completed &&
 <Button variant="contained" onClick={() => this.handleUncomplete(this.props.courseid)} style={{background: 'green',marginTop: '10px', color:'white'}}><DoneIcon style={{marginRight:'5px'}}/><Typography style={{fontWeight:'300', color:'white'}} variant="h4" noWrap> Completed</Typography></Button>
 }
+
+
     </div>
   );
 }
 }
 
-export default withStyles(styles)(Course);
+export default withRouter(withStyles(styles)(Course));

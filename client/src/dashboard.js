@@ -21,17 +21,11 @@ const styles = theme => ({
 
 class Dashboard extends React.Component {
 
-
-
-
-
 render(){
   if (!this.props.stateinfo.courses){
   return (
     <div><Loading /></div>
   )}
-
-
 
   return (
     <div className="list" >

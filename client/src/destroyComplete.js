@@ -12,6 +12,7 @@ export function destroyComplete(input, route) {
 return (dispatch) => {
     fetch(`/completes/destroy.json`, data)
       .then(response => response.json())
+      .then(route())
       .catch(err => console.log(err))
 }
 }

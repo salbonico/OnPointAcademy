@@ -1,4 +1,4 @@
-export function createComplete(input) {
+export function createComplete(input,route) {
 
   let data = {
     method: 'POST',
@@ -12,6 +12,7 @@ export function createComplete(input) {
 return (dispatch) => {
     fetch(`/completes/new.json`, data)
       .then(response => response.json())
+      .then(route())
       .catch(err => console.log(err))
 }
 }
