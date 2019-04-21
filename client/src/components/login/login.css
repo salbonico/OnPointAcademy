@@ -1,0 +1,50 @@
+html, body{
+  height: 100%;
+}
+
+.login {
+			background-image: url('./groupbg.jpg') ;
+			background-position: center center;
+			background-repeat:  no-repeat;
+			background-attachment: fixed;
+			background-size:  cover;
+			background-color: #999;
+      height: 1000px;
+}
+
+div, body{
+  margin: 0;
+  padding: 0;
+}
+
+.loginpage{
+  background-color: white;
+}
+
+.wrapper {
+  height: 100%;
+  width: 100%;
+  padding-top: 100px;
+}
+
+.topLogin {
+  margin-left: 100px;
+}
+
+.message {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 292px;
+  height: 300px;
+  bottom: 0;
+  display: block;
+  margin-left: 40%;
+  position: center;
+  color: #fff;
+  background-color: white;
+  opacity: 0.9;
+  border-radius: 15px;
+  padding-left: 44px;
+  padding-top: 20px;
+}

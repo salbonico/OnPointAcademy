@@ -1,9 +1,8 @@
 export default function courses_reducer(state = {loading: false, courses: []}, action) {
 
     switch (action.type) {
-      case 'LOADING_COURSES':
+        case 'LOADING_COURSES':
         return {loading: true, courses: []}
-
 
         case 'FETCH_COURSES':
 
@@ -13,9 +12,7 @@ export default function courses_reducer(state = {loading: false, courses: []}, a
                   }
         return output
 
-
-
-      default:
+        default:
         return state;
     }
 }
