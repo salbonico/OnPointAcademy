@@ -15,6 +15,8 @@ import { createComplete } from './createComplete'
 import { destroyComplete } from './destroyComplete'
 import { nextCourse } from './nextCourse'
 import Loading from './loading'
+import Editprofile from './editProfile'
+import { updateProfile } from './updateProfile'
 
 class Home extends Component {
 routeLogin = () => this.props.history.push('/login');
@@ -38,9 +40,10 @@ gaugefill = (completes,courses) => courses !== undefined && completes !== undefi
       <div><Loading /></div>
     )}
 
-    if (!this.props.match.params.id){
+    if (!this.props.match.params.id && this.props.match.path !== "/profile"){
     return (
       <div className="App">
+     {console.log(this.props.match.path)}
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
         <AppBar user={this.props.user.id} courses={this.props.courses} logout={this.props.logout2} routeLogin={this.routeLogin}/>
         <div className="space"></div>
@@ -49,11 +52,20 @@ gaugefill = (completes,courses) => courses !== undefined && completes !== undefi
       </div>
     )}
 
+    if (this.props.match.path === "/profile"){
+    return (
+      <div className="App">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+      <AppBar user={this.props.user.id} courses={this.props.courses} logout={this.props.logout2} routeLogin={this.routeLogin}/>
+      <div className="space"></div>
+      <Editprofile user={this.props.user} updateProfile = {this.props.updateProfile2} route={this.routeBack}/>
+      </div>
+    )}
 
     return (
       <div className="App">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-        {console.log(this.newfunction(parseInt(this.props.match.params.id)))}
+
 
         <AppBar user={this.props.user.id} courses={this.props.courses} logout={this.props.logout2} routeLogin={this.routeLogin}/>
         <div className="space"></div>
@@ -88,6 +100,9 @@ const mapDispatchToProps = dispatch => {
     },
     destroyComplete2: (data, route) => {
       dispatch(destroyComplete(data,route))
+    },
+    updateProfile2: (data, route) => {
+      dispatch(updateProfile(data,route))
     }
   };
 };

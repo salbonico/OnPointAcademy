@@ -131,6 +131,9 @@ logout = () => {
           <Button onClick={() => this.props.history.push(`/home`)} variant="contained" style={{background: '#D23D2F',color:'#FAFAFA', marginLeft: '1%',}}>
            Home
         </Button>
+        <Button onClick={() => this.props.history.push(`/profile`)} variant="contained" style={{background: '#D23D2F',color:'#FAFAFA', marginLeft: '1%',}}>
+         Edit Profile
+      </Button>
           </Toolbar>
         </AppBar>
         <Drawer

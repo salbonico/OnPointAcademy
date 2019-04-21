@@ -25,15 +25,8 @@ const styles = theme => ({
     width: 200,
   },
   button: {
-    marginTop: 6,
-    marginLeft: 18 ,
-    opacity: 1,
-    color: 'red',
-    background: 'black',
-  },
-  button2:{
-    marginTop: 6,
-    marginLeft: 22 ,
+    marginLeft: '65px',
+    marginTop: '5px',
     opacity: 1,
     color: 'red',
     background: 'black',
@@ -94,9 +87,7 @@ routeHome = () => this.props.history.push('/home')
         <Button onClick={() => this.props.dispatchUser(this.state,this.routeHome)} variant="contained"  className={classes.button}>
         Login
       </Button>
-      <Button onClick={this.routeHome} variant="contained"  className={classes.button2}>
-        Signup
-      </Button>
+
 
       </form>
       </div>
