@@ -8,7 +8,6 @@ import Button from '@material-ui/core/Button';
 import DoneIcon from '@material-ui/icons/Done';
 import { withRouter } from 'react-router-dom';
 
-
 const styles = theme => ({
   root: {
     ...theme.mixins.gutters(),
@@ -20,15 +19,10 @@ const styles = theme => ({
 class Course extends React.Component {
   handleComplete = () => {
     this.props.createComplete2({course_id:this.props.courseid},this.props.route)
-    this.setState({ completed: !this.state.completed });
   };
   handleUncomplete = (courseid) => {
     let id = this.props.user.completes.find(function (complete) { return complete.course_id === parseInt(courseid)})
     this.props.destroyComplete2({course_id:id.id}, this.props.route)
-    this.setState({ completed: !this.state.completed });
-  };
-  state = {
-    completed: this.props.buttoncheck
   };
 
 render(){
@@ -52,10 +46,10 @@ render(){
           {this.props.course.content}
         </Typography>
       </Paper>
-      {!this.state.completed &&
+      {!this.props.buttoncheck &&
         <Button variant="contained" onClick={() => this.handleComplete()} style={{background: '#D23D2F',color:'#FAFAFA',marginTop:'10px'}}><Typography variant="h4" style={{fontWeight:'300', color:'white'}} noWrap>Mark Completed</Typography></Button>
       }
-      {this.state.completed &&
+      {this.props.buttoncheck &&
         <Button variant="contained" onClick={() => this.handleUncomplete(this.props.courseid)} style={{background: 'green',marginTop: '10px', color:'white'}}><DoneIcon style={{marginRight:'5px'}}/><Typography style={{fontWeight:'300', color:'white'}} variant="h4" noWrap> Completed</Typography></Button>
       }
     </div>

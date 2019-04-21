@@ -16,11 +16,12 @@ import Editprofile from './editProfile'
 import { updateProfile } from './updateProfile'
 
 class Home extends Component {
-  routeLogin = () => this.props.history.push('/login');
-  testfunction = (course) => this.props.user.completes.find(function (complete) { return complete.course_id === course})?true:false
-  newfunction = (course) => this.props.courses.find(function(element) {return element.id === course})
-  routeBack = () => this.props.history.push('/home')
-  gaugefill = (completes,courses) => courses !== undefined && completes !== undefined ?Math.trunc((completes.length/courses.length)*100):1001
+routeLogin = () => this.props.history.push('/login');
+testfunction = (course) => this.props.user.completes.find(function (complete) { return complete.course_id === course})?true:false
+newfunction = (course) => this.props.courses.find(function(element) {return element.id === course})
+courseId = (course) => course.id
+routeBack = () => this.props.history.push('/home')
+gaugefill = (completes,courses) => courses !== undefined && completes !== undefined ?Math.trunc((completes.length/courses.length)*100):1001
 
   componentDidMount() {
     this.props.fetchCourses2()
@@ -29,32 +30,29 @@ class Home extends Component {
 
   render() {
     if (!this.props.user.completes){
-      return (
-        <div><Loading /></div>
-      )
-    }
+    return (
+      <div><Loading /></div>
+    )}
 
     if (!this.props.match.params.id && this.props.match.path !== "/profile"){
-      return (
-        <div className="App">
-          <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-          <AppBar user={this.props.user.id} courses={this.props.courses} logout={this.props.logout2} routeLogin={this.routeLogin}/>
-          <div className="space"></div>
-          <Dashboard stateinfo={this.props} gaugefill={this.gaugefill(this.props.user.completes,this.props.courses)} nextCourse= {nextCourse(this.props.user,this.props.courses)}/>
-        </div>
-      )
-    }
+    return (
+      <div className="App">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+        <AppBar user={this.props.user.id} courses={this.props.courses} logout={this.props.logout2} routeLogin={this.routeLogin}/>
+        <div className="space"></div>
+        <Dashboard stateinfo={this.props} gaugefill={this.gaugefill(this.props.user.completes,this.props.courses)} nextCourse= {nextCourse(this.props.user,this.props.courses)}/>
+      </div>
+    )}
 
     if (this.props.match.path === "/profile"){
-      return (
-        <div className="App">
-          <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-          <AppBar user={this.props.user.id} courses={this.props.courses} logout={this.props.logout2} routeLogin={this.routeLogin}/>
-          <div className="space"></div>
-          <Editprofile user={this.props.user} updateProfile = {this.props.updateProfile2} route={this.routeBack}/>
-        </div>
-      )
-    }
+    return (
+      <div className="App">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+        <AppBar user={this.props.user.id} courses={this.props.courses} logout={this.props.logout2} routeLogin={this.routeLogin}/>
+        <div className="space"></div>
+        <Editprofile user={this.props.user} updateProfile = {this.props.updateProfile2} route={this.routeBack}/>
+      </div>
+    )}
 
     return (
       <div className="App">
