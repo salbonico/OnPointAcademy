@@ -8,6 +8,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import './App.css';
 import { withRouter } from 'react-router-dom'
+import Button from '@material-ui/core/Button';
 
 const styles = theme => ({
   root: {
@@ -42,12 +43,12 @@ render(){
 <Typography variant="h2">
 Current Lesson:
 </Typography>
- <Paper props={this.props} onClick={() => this.props.history.push(`/courses/${this.props.nextCourse.id}`)} className="paper" elevation={5} style={{marginTop: '5px', marginBottom: '15px', paddingTop: '10px', width:'85%', backgroundColor:'#8AF0E8', opacity:'0.8'}}>
+ <Button variant="contained" onClick={() => this.props.history.push(`/courses/${this.props.nextCourse.id}`)}  style={{marginTop: '5px', marginBottom: '15px', paddingTop: '10px', width:'85%', backgroundColor:'#8AF0E8', opacity:'0.8'}}>
 
-  <Typography variant="h3">
+  <Typography variant="h4">
   {this.props.nextCourse && this.props.nextCourse.name}
   </Typography>
-  </Paper>
+  </Button>
 </Paper>
       {this.props.stateinfo.courses &&
       <Paper props={this.props} className="paper" elevation={2} style={{marginTop: '15px', paddingTop: '10px', width:'33%', minWidth:'300px'}}>
