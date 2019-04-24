@@ -9,12 +9,10 @@ class CoursesController < ApplicationController
 	  	end
 	end
 
-
 	def edit
 		redirect_to "/home" unless isadmin?
 		@course = Course.find(params[:id])
 	end
-
 
 	def create
 		redirect_to "/home" unless isadmin?
@@ -29,41 +27,29 @@ class CoursesController < ApplicationController
 	def show
 		@course = Course.find(params[:id])
 		@user = User.find(session["user_id"])
-		@enrollment = Enrollment.new(:course_id => @course.id, :user_id => @user.id)
+		@enrollment = Complete.new(:course_id => @course.id, :user_id => @user.id)
 		respond_to do |format|
       		format.html { render :show }
       		format.json { render json: @course, status: 200 }
-  		end
+  	end
 	end
 
 	def index
-		# if params[:teacher_id]
-		# 	@teacher = Teacher.find(params[:teacher_id])
-		# 	@courses = @teacher.courses
-		# else
-			@courses = Course.all
-		# end
-		# @user = User.find(session["user_id"])
-		# @enrollment = Enrollment.new(:user_id => @user.id)
+		@courses = Course.all
 		respond_to do |format|
       		format.html { render :index }
       		format.json { render json: @courses, status: 200 }
-  		end
-		#render :json => {:user => @user.to_json, :courses => @courses}
-
-
+  	end
 	end
 
-    def available
-       @user = User.find(session["user_id"])
-       @courses = Course.enrollment_check(@user)
-       @enrollment = Enrollment.new(:user_id => @user.id)
-    end
-
-
+  def available
+    @user = User.find(session["user_id"])
+    @courses = Course.enrollment_check(@user)
+    @enrollment = Complete.new(:user_id => @user.id)
+  end
 
 	def update
-		redirect_to "/home" unless isadmin?
+			redirect_to "/home" unless isadmin?
 	    @course = Course.find(params[:id])
 	    @course.update(course_params)
 	    if @course.save
@@ -76,13 +62,13 @@ class CoursesController < ApplicationController
 	def destroy
 		redirect_to "/home" unless isadmin?
 		course = Course.find(params[:id])
-	    course.destroy
-	    redirect_to "/courses"
+	  course.destroy
+	  redirect_to "/courses"
 	end
 
 	private
 
-	  def course_params
-	    params.require(:course).permit(:name, :description, :teacher_id)
-	  end
+	def course_params
+	   params.require(:course).permit(:name, :description, :teacher_id, :content)
+	end
 end

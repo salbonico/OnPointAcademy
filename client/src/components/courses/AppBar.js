@@ -116,15 +116,14 @@ class MiniDrawer extends React.Component {
             </Button>
             <Button onClick={() => this.props.history.push(`/home`)} variant="contained" style={{background: '#D23D2F',color:'#FAFAFA', marginLeft: '1%',}}>
               Home
-        </Button>
-        <Button onClick={() => this.props.history.push(`/profile`)} variant="contained" style={{background: '#D23D2F',color:'#FAFAFA', marginLeft: '1%',}}>
-         Edit Profile
-      </Button>
+            </Button>
+            <Button onClick={() => this.props.history.push(`/profile`)} variant="contained" style={{background: '#D23D2F',color:'#FAFAFA', marginLeft: '1%',}}>
+              Edit Profile
+            </Button>
           </Toolbar>
         </AppBar>
         <Drawer
           variant="permanent"
-
           className={classNames(classes.drawer, {
             [classes.drawerOpen]: this.state.open,
             [classes.drawerClose]: !this.state.open,
@@ -136,26 +135,25 @@ class MiniDrawer extends React.Component {
             }),
           }}
           open={this.state.open}
-        >
+          >
           <div className={classes.toolbar}>
           <Typography variant="h2" style={{marginRight: '5px', paddingBottom: '18px', paddingTop:'17px'}}>
-          Courses
+            Courses
           </Typography>
           </div>
           <Divider />
           <List>
             {this.props.courses.map((course) => (
               <ListItem button onClick={() => this.props.history.push(`/courses/${course.id}`)} key={course.id}>
-              {course.completes.find((complete) => complete.user_id === this.props.user) &&
-              <ListItemIcon>
-              <DoneIcon />
-              </ListItemIcon>
-              }
-              <ListItemText primary={course.name} />
+                {course.completes.find((complete) => complete.user_id === this.props.user) &&
+                <ListItemIcon>
+                  <DoneIcon />
+                </ListItemIcon>
+                }
+                <ListItemText primary={course.name} />
               </ListItem>
             ))}
           </List>
-
         </Drawer>
       </div>
     );

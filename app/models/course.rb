@@ -1,6 +1,6 @@
 class Course < ActiveRecord::Base
-	has_many :enrollments
-	has_many :users, through: :enrollments
+	has_many :completes
+	has_many :users, through: :completes
 	belongs_to :teacher
 	accepts_nested_attributes_for :teacher
 	validates :name, presence: true
@@ -31,18 +31,15 @@ class Course < ActiveRecord::Base
 			self.save
 			return 10
 		else
-	    	teacher[0].id
+	    teacher[0].id
 		end
 	end
 
-	def self.enrollment_check(user)
+	def self.complete_check(user)
 		allcourses = self.all
-
 		allcourses.map do |course|
 		course if !course.users.include?(user)
 		end
-
 	end
-
 
 end

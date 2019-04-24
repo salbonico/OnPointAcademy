@@ -19,12 +19,11 @@ class TeachersController < ApplicationController
   	@teachers = Teacher.all
   end
 
-
   def show
   	@teacher = Teacher.find(params[:id])
     respond_to do |format|
           format.html { render :show }
-          format.json { render json: @teacher, status: 200} 
+          format.json { render json: @teacher, status: 200}
     end
   end
 
@@ -43,7 +42,7 @@ class TeachersController < ApplicationController
       redirect_to @teacher
     else
       render :edit
-    end  
+    end
   end
 
   def destroy
@@ -53,9 +52,8 @@ class TeachersController < ApplicationController
     redirect_to "/teachers"
   end
 
-
   private
-  
+
     def teacher_params
       params.require(:teacher).permit(:name)
     end
